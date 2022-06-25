@@ -40,3 +40,25 @@ paths:
       responses:
         200:
           description: OK
+  /addBlog:
+  post:
+    summary: Creates a new blog entry.
+    parameters:
+      - in: body
+        name: blogTest
+        description: The user to create.
+        schema:
+          type: object
+          required:
+            - title
+          properties:
+            title:
+              type: string
+            content:
+              type: string
+        example: '{"title":"foo", "content":"bar"}'
+    produces:
+      - void
+    responses:
+      200:
+        description: OK
