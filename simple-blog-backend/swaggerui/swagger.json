@@ -1,0 +1,42 @@
+swagger: "2.0"
+info:
+  title: Sample API
+  description: API description in Markdown.
+  version: 1.0.0
+host: localhost:8000
+basePath: /api
+schemes:
+  - http
+paths:
+  /test:
+    get:
+      summary: Returns test struct with two fields.
+      description: Optional extended description in Markdown.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /rec:
+    post:
+      summary: Prints json file to go server console.
+      parameters:
+        - in: body
+          name: blogTest
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - title
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+          example: '{"title":"foo", "content":"bar"}'
+      produces:
+        - void
+      responses:
+        200:
+          description: OK
