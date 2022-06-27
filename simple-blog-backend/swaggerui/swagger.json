@@ -41,24 +41,47 @@ paths:
         200:
           description: OK
   /addBlog:
-  post:
-    summary: Creates a new blog entry.
-    parameters:
-      - in: body
-        name: blogTest
-        description: The user to create.
-        schema:
-          type: object
-          required:
-            - title
-          properties:
-            title:
-              type: string
-            content:
-              type: string
-        example: '{"title":"foo", "content":"bar"}'
-    produces:
-      - void
-    responses:
-      200:
-        description: OK
+    post:
+      summary: IMPORTANT -> THIS IS NOT YET IMPLEMENTED - Creates a new blog entry.
+      parameters:
+        - in: body
+          name: blogTest
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - title
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+          example: '{"title":"foo", "content":"bar"}'
+      produces:
+        - void
+      responses:
+        200:
+          description: OK
+  /mdtohtml:
+    post:
+      summary: Transforms Markdown to a html format.
+      parameters:
+        - in: body
+          name: Markdown to HTML
+          description: This Endpoint transforms a Markdown to a HTML format. In the example we create a h1 tag with an li tag. # -> h1, - -> li
+          schema:
+            type: object
+            required:
+              - content
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+          example: '{"title": "I AM A PAGE TITLE", 
+          "content": "# I am a headline and so on and  \n - I am a bullet point"}'
+      produces:
+        - void
+      responses:
+        200:
+          description: OK

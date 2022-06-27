@@ -9,6 +9,7 @@ import (
 	"github.com/russross/blackfriday"
 )
 
+//-----------------------------------------------------------------------------
 func GetHeadline(str string) (result string) {
 	startToken := "<h1>"
 	endToken := "</h1>"
@@ -26,6 +27,7 @@ func GetHeadline(str string) (result string) {
 	return str[s:e]
 }
 
+//-----------------------------------------------------------------------------
 func CreateArticle(article string) *dataStruct.TestDataStruct {
 	newArticle := dataStruct.TestDataStruct{
 		Title:   GetHeadline(article),
@@ -35,6 +37,7 @@ func CreateArticle(article string) *dataStruct.TestDataStruct {
 	return &newArticle
 }
 
+//-----------------------------------------------------------------------------
 func MdToArticleStruct(pathToMd string) (outputArticle *dataStruct.TestDataStruct) {
 	content, err := ioutil.ReadFile(pathToMd)
 	if err != nil {
@@ -45,4 +48,11 @@ func MdToArticleStruct(pathToMd string) (outputArticle *dataStruct.TestDataStruc
 	outputArticle = CreateArticle(string(contentByte))
 
 	return
+}
+
+//-----------------------------------------------------------------------------
+func MdStructToHTML(blogStruct dataStruct.BlogStructure) string {
+	blogStructureByte := blackfriday.MarkdownCommon([]byte(blogStruct.Content))
+
+	return string(blogStructureByte)
 }

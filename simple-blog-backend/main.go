@@ -17,6 +17,7 @@ func main() {
 
 	r.HandleFunc("/api/test", hfunc.SendTestData).Methods("GET")
 	r.HandleFunc("/api/rec", hfunc.GetTestData).Methods("POST")
+	r.HandleFunc("/api/mdtohtml", hfunc.SendMdToHTML).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
