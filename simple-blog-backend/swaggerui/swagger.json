@@ -85,3 +85,46 @@ paths:
       responses:
         200:
           description: OK
+  /savemd:
+    post:
+      summary: Saves given Mardown content to local filesystem.
+      parameters:
+        - in: body
+          name: Markdown to save to local file
+          description: This Endpoint saves the Mardown file given in the POST body to the local filesysten. The title of the file + current date will be the filename
+          schema:
+            type: object
+            required:
+              - title
+              - content
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+          example: '{"title": "I AM A PAGE TITLE", 
+          "content": "# I am a headline and so on and  \n - I am a bullet point"}'
+      produces:
+        - A saved file in the local filesystem
+      responses:
+        200:
+          description: OK
+  /uploadmd/{fileName}:
+    get:
+      summary: Returns the given file/filename as a html response
+      parameters:
+        - in: path
+          name: fileName
+          description: This Endpoint takes a local file with the given filename and returns a html version
+          schema:
+            type: object
+            required:
+              - fileName
+            properties:
+              fileName:
+                type: string
+      produces:
+        - A HTML version of the given file
+      responses:
+        200:
+          description: OK
